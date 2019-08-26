@@ -2,8 +2,8 @@ import piece
 
 class Knight(piece.Piece):
     def __init__(self,position,team,game):
-        piece.Piece.__init__(self,position = position,team = team,game = game)
         self.type = 'knight'
+        piece.Piece.__init__(self,position = position,team = team,game = game)
     def allpos(self):
         P=[]
         try:

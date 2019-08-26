@@ -3,8 +3,8 @@ import piece
 class Bishop(piece.Piece):
 
     def __init__(self,position,team,game,initialize = True):
-        piece.Piece.__init__(self,position = position,team = team,game = game, initialize = initialize)
         self.type = 'bishop'
+        piece.Piece.__init__(self,position = position,team = team,game = game, initialize = initialize)
 
     def possible_moves(self):
         L=[]

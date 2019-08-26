@@ -2,9 +2,8 @@ import piece
 
 class King(piece.Piece):
     def __init__(self,position,team,game):
-        game.kings.append(self)
-        piece.Piece.__init__(self,position = position,team = team,game = game)
         self.type = 'king'
+        piece.Piece.__init__(self,position = position,team = team,game = game)
 
     def possible_moves(self):
         temp_func = [

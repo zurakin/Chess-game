@@ -2,11 +2,11 @@ import piece
 
 class Pawn(piece.Piece):
     def __init__(self,position,team,game):
-        piece.Piece.__init__(self,position = position,team = team,game = game)
         self.type = 'pawn'
+        piece.Piece.__init__(self,position = position,team = team,game = game)
     def possible_moves(self):
         L=[]
-        if self.team=="white":
+        if self.team=="black":
             try:
                 temp=self.position._get_up().position
                 if self.game.board[temp]==None:
@@ -17,7 +17,7 @@ class Pawn(piece.Piece):
                             L+=[temp2]
             except AssertionError :
                 pass
-        if self.team=="black":
+        if self.team=="white":
             try:
                 temp=self.position._get_down().position
                 if self.game.board[temp]==None:
@@ -34,7 +34,7 @@ class Pawn(piece.Piece):
         L=[]
         d1=None
         d2=None
-        if self.team=='white':
+        if self.team=='black':
             try:
                 d1=self.position._get_diagonal_upleft()
                 if d1._get_piece() != None:
@@ -49,7 +49,7 @@ class Pawn(piece.Piece):
                         L.append(d2.position)
             except AssertionError :
                 pass
-        elif self.team=='black':
+        elif self.team=='white':
             try:
                 d1=self.position._get_diagonal_downleft()
                 if d1._get_piece() != None:

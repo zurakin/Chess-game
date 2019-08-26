@@ -1,54 +1,64 @@
+import game
+import pawn
+import bishop
+import knight
+import queen
+import rook
+import king
 
 
 
-game=Game()
+game=game.Game()
 
 
 #team white
-Wpawn1=Pawn('A7','white')
-Wpawn2=Pawn('B7','white')
-Wpawn3=Pawn('C7','white')
-Wpawn4=Pawn('D7','white')
-Wpawn5=Pawn('E7','white')
-Wpawn6=Pawn('F7','white')
-Wpawn7=Pawn('G7','white')
-Wpawn8=Pawn('H7','white')
+Wpawn1=pawn.Pawn('H7','white',game)
+Wpawn2=pawn.Pawn('G7','white',game)
+Wpawn3=pawn.Pawn('F7','white',game)
+Wpawn4=pawn.Pawn('E7','white',game)
+Wpawn5=pawn.Pawn('D7','white',game)
+Wpawn6=pawn.Pawn('C7','white',game)
+Wpawn7=pawn.Pawn('B7','white',game)
+Wpawn8=pawn.Pawn('A7','white',game)
 
-Wknight1=Knight("B8","white")
-Wknight2=Knight("G8","white")
+Wknight1=knight.Knight("G8","white",game)
+Wknight2=knight.Knight("B8","white",game)
 
-Wbishop1=Bishop("C8","white")
-Wbishop2=Bishop("F8","white")
+Wbishop1=bishop.Bishop("F8","white",game)
+Wbishop2=bishop.Bishop("C8","white",game)
 
-Wrook1=Rook("A8","white")
-Wrook2=Rook("H8","white")
+Wrook1=rook.Rook("H8","white",game)
+Wrook2=rook.Rook("A8","white",game)
 
-Wking=King("E8","white")
+Wking=king.King("D8","white",game)
 
-Wqueen=Queen("D8","white")
+Wqueen=queen.Queen("E8","white",game)
 
 
 
 
 #team black
-Bpawn1=Pawn('A2','black')
-Bpawn2=Pawn('B2','black')
-Bpawn3=Pawn('C2','black')
-Bpawn4=Pawn('D2','black')
-Bpawn5=Pawn('E2','black')
-Bpawn6=Pawn('F2','black')
-Bpawn7=Pawn('G2','black')
-Bpawn8=Pawn('H2','black')
+Bpawn1=pawn.Pawn('H2','black',game)
+Bpawn2=pawn.Pawn('G2','black',game)
+Bpawn3=pawn.Pawn('F2','black',game)
+Bpawn4=pawn.Pawn('E2','black',game)
+Bpawn5=pawn.Pawn('D2','black',game)
+Bpawn6=pawn.Pawn('C2','black',game)
+Bpawn7=pawn.Pawn('B2','black',game)
+Bpawn8=pawn.Pawn('A2','black',game)
 
-Bknight1=Knight("B1","black")
-Bknight2=Knight("G1","black")
+Bknight1=knight.Knight("B1","black",game)
+Bknight2=knight.Knight("G1","black",game)
 
-Bbishop1=Bishop("C1","black")
-Bbishop2=Bishop("F1","black")
+Bbishop1=bishop.Bishop("F1","black",game)
+Bbishop2=bishop.Bishop("C1","black",game)
 
-Brook1=Rook("A1","black")
-Brook2=Rook("H1","black")
+Brook1=rook.Rook("H1","black",game)
+Brook2=rook.Rook("A1","black",game)
 
-Bking=King("E1","black")
+Bking=king.King("D1","black",game)
 
-Bqueen=Queen("D1","black")
+Bqueen=queen.Queen("E1","black",game)
+
+
+game.draw()

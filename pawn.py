@@ -1,25 +1,30 @@
-class Pawn(Piece):
+import piece
+
+class Pawn(piece.Piece):
+    def __init__(self,position,team,game):
+        piece.Piece.__init__(self,position = position,team = team,game = game)
+        self.type = 'pawn'
     def possible_moves(self):
         L=[]
         if self.team=="white":
             try:
                 temp=self.position._get_up().position
-                if game.sheet[temp]==None:
+                if game.board[temp]==None:
                     L+=[temp]
                     if self.has_moved==False:
                         temp2=self.position._get_up()._get_up().position
-                        if game.sheet[temp2]==None:
+                        if game.board[temp2]==None:
                             L+=[temp2]
             except AssertionError :
                 pass
         if self.team=="black":
             try:
                 temp=self.position._get_down().position
-                if game.sheet[temp]==None:
+                if game.board[temp]==None:
                     L+=[temp]
                     if self.has_moved==False:
                         temp2=self.position._get_down()._get_down().position
-                        if game.sheet[temp2]==None:
+                        if game.board[temp2]==None:
                             L+=[temp2]
             except AssertionError :
                 pass

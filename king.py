@@ -1,4 +1,10 @@
-class King(Piece):
+import piece
+
+class King(piece.Piece):
+    def __init__(self,position,team,game):
+        piece.Piece.__init__(self,position = position,team = team,game = game)
+        self.type = 'king'
+
     def possible_moves(self):
         L=[]
         try :

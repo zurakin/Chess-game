@@ -1,34 +1,39 @@
+import position_class
+
 class Piece:
 
-    def __init__(self,position,team):
+    def __init__(self,position,team,game):
         self.team=team
         self.status='Alive'
         self.has_moved=False
-        self.position=Position(position)
+        self.position=position_class.Position(position)
         self.line=int(position[1])
         self.column=position[0]
-        game.sheet[position]=self
+        game.board[position]=self
+
+    def __repr__(self):
+        return "{} {}".format(self.team,self.type)
 
     def move(self,position):
         if position in self.possible_attacks():
-            game.sheet[self.position.position]=None
-            Position(position)._get_piece().status='Dead'
-            Position(position)._get_piece().line=None
-            Position(position)._get_piece().column=None
-            Position(position)._get_piece().position=None
+            game.board[self.position.position]=None
+            position_class.Position(position)._get_piece().status='Dead'
+            position_class.Position(position)._get_piece().line=None
+            position_class.Position(position)._get_piece().column=None
+            position_class.Position(position)._get_piece().position=None
             self.has_moved=True
             self.line=position[1]
             self.column=position[0]
-            self.position=Position(position)
-            game.sheet[position]=self
+            self.position=position_class.Position(position)
+            game.board[position]=self
 
         elif position in self.possible_moves():
-            game.sheet[self.position.position]=None
+            game.board[self.position.position]=None
             self.has_moved=True
             self.line=position[1]
             self.column=position[0]
-            self.position=Position(position)
-            game.sheet[position]=self
+            self.position=position_class.Position(position)
+            game.board[position]=self
 
         else :
             print('impossible move')

@@ -1,4 +1,9 @@
-class Knight(Piece):
+import piece
+
+class Knight(piece.Piece):
+    def __init__(self,position,team,game):
+        piece.Piece.__init__(self,position = position,team = team,game = game)
+        self.type = 'knight'
     def allpos(self):
         P=[]
         try:

@@ -10,7 +10,7 @@ class Position:
         assert self.column!='X'
 
     def _get_piece(self):
-        return game.sheet[self.position]
+        return game.board[self.position]
 
 
     def _get_up(self):

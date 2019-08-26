@@ -1,4 +1,11 @@
-class Bishop(Piece):
+import piece
+
+class Bishop(piece.Piece):
+
+    def __init__(self,position,team,game):
+        piece.Piece.__init__(self,position = position,team = team,game = game)
+        self.type = 'bishop'
+
     def possible_moves(self):
         L=[]
         temp=self.position

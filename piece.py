@@ -10,14 +10,20 @@ class Piece:
         self.position=position_class.Position(position,game)
         self.line=int(position[1])
         self.column=position[0]
+        ##the initialize attribute is added so that when the rook class is called inside the queen class, it does't overwrite it in the board
         if initialize:
-            game.board[position]=self
+            self.image_path = r"media\{}.png".format(
+            self.team.title()+self.type.title())
+            game.board[position] = self
+            game.pieces.append(self)
 
     def __repr__(self):
         return "{} {}".format(self.team,self.type)
 
     def move(self,position):
         if position in self.possible_attacks():
+            if self.game.board[position].type == 'king':
+                self.game.winner = self.team
             self.game.board[self.position.position]=None
             position_class.Position(position,self.game)._get_piece().status='Dead'
             position_class.Position(position,self.game)._get_piece().line=None

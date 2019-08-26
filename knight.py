@@ -38,17 +38,19 @@ class Knight(piece.Piece):
             P.append(self.position._get_down()._get_down()._get_left())
         except AssertionError :
             pass
-        return L
+        return P
 
     def possible_moves(self):
-        L=self.allpos()
+        P = self.allpos()
+        L = []
         for p in P:
             if p._get_piece() == None:
                 L.append(p.position)
         return L
 
     def possible_attacks(self):
-        L=self.allpos()
+        P = self.allpos()
+        L = []
         for p in P:
             if p._get_piece() != None:
                 if p._get_piece().team!=self.team:

@@ -9,22 +9,22 @@ class Pawn(piece.Piece):
         if self.team=="white":
             try:
                 temp=self.position._get_up().position
-                if game.board[temp]==None:
+                if self.game.board[temp]==None:
                     L+=[temp]
                     if self.has_moved==False:
                         temp2=self.position._get_up()._get_up().position
-                        if game.board[temp2]==None:
+                        if self.game.board[temp2]==None:
                             L+=[temp2]
             except AssertionError :
                 pass
         if self.team=="black":
             try:
                 temp=self.position._get_down().position
-                if game.board[temp]==None:
+                if self.game.board[temp]==None:
                     L+=[temp]
                     if self.has_moved==False:
                         temp2=self.position._get_down()._get_down().position
-                        if game.board[temp2]==None:
+                        if self.game.board[temp2]==None:
                             L+=[temp2]
             except AssertionError :
                 pass

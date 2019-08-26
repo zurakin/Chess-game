@@ -60,5 +60,4 @@ Bking=king.King("D1","black",game)
 
 Bqueen=queen.Queen("E1","black",game)
 
-
-game.draw()
+game.play()

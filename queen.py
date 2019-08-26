@@ -1,4 +1,6 @@
 import piece
+import bishop
+import rook
 
 class Queen(piece.Piece):
     def __init__(self,position,team,game):
@@ -6,8 +8,7 @@ class Queen(piece.Piece):
         self.type = 'queen'
 
     def possible_moves(self):
-        return Rook(self.position.position,self.team).possible_moves()
-        +Bishop(self.position.position,self.team).possible_moves()
+        return rook.Rook(self.position.position,self.team,self.game, initialize = False).possible_moves()+bishop.Bishop(self.position.position,self.team,self.game, initialize = False).possible_moves()
+
     def possible_attacks(self):
-        return Rook(self.position.position,self.team).possible_attacks()
-        +Bishop(self.position.position,self.team).possible_attacks()
+        return rook.Rook(self.position.position,self.team,self.game, initialize = False).possible_attacks()+bishop.Bishop(self.position.position,self.team,self.game, initialize = False).possible_attacks()

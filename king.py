@@ -2,78 +2,55 @@ import piece
 
 class King(piece.Piece):
     def __init__(self,position,team,game):
+        game.kings.append(self)
         piece.Piece.__init__(self,position = position,team = team,game = game)
         self.type = 'king'
 
     def possible_moves(self):
+        temp_func = [
+        self.position._get_diagonal_upleft,
+        self.position._get_diagonal_upright,
+        self.position._get_diagonal_downleft,
+        self.position._get_diagonal_downright,
+        self.position._get_down,
+        self.position._get_up,
+        self.position._get_right,
+        self.position._get_left
+        ]
         L=[]
-        try :
-            L+=[self.position._get_diagonal_upleft()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self.position._get_diagonal_upright()]
-        except AssertionError  :
-            pass
-        try:
-            L+=[self.position._get_diagonal_downleft()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self.position._get_diagonal_downright()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self.position._get_down()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self.position._get_up()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self.position._get_right()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self.position._get_left()]
-        except AssertionError :
-            pass
+
+        for f in temp_func:
+            try:
+                L.append(f())
+            except:
+                pass
+        L2 = []
         for p in L:
-            if p._get_piece()!=None:
-                L.remove(p)
-        return [i.position for i in L]
+            if p._get_piece()==None:
+                L2.append(p)
+        return [i.position for i in L2]
+
+
+
     def possible_attacks(self):
+        temp_func = [
+        self.position._get_diagonal_upleft,
+        self.position._get_diagonal_upright,
+        self.position._get_diagonal_downleft,
+        self.position._get_diagonal_downright,
+        self.position._get_down,
+        self.position._get_up,
+        self.position._get_right,
+        self.position._get_left
+        ]
         L=[]
-        try :
-            L+=[self.position._get_diagonal_upleft()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self.position._get_diagonal_upright()]
-        except AssertionError  :
-            pass
-        try:
-            L+=[self.position._get_diagonal_downleft()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self.position._get_diagonal_downright()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self._get_up(),self._get_down()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self._get_right()]
-        except AssertionError :
-            pass
-        try:
-            L+=[self._get_left()]
-        except AssertionError :
-            pass
+        for f in temp_func:
+            try:
+                L.append(f())
+            except:
+                pass
+        L2 = []
         for p in L:
-            if p._get_piece()==None or p._get_piece().team==self.team:
-                L.remove(p)
-        return [i.position for i in L]
+            if p._get_piece() != None and p._get_piece().team != self.team:
+                L2.append(p)
+        return [i.position for i in L2]

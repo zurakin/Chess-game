@@ -2,8 +2,8 @@ import piece
 
 class Rook(piece.Piece):
 
-    def __init__(self,position,team,game):
-        piece.Piece.__init__(self,position = position,team = team,game = game)
+    def __init__(self,position,team,game,initialize = True):
+        piece.Piece.__init__(self,position = position,team = team,game = game, initialize = initialize)
         self.type = 'rook'
 
     def possible_moves(self):

@@ -2,10 +2,12 @@ from tkinter import *
 from PIL import ImageTk
 
 
+
 alpha = ['A','B','C','D','E','F','G','H']
 
 def convert(position):
     return ((alpha.index(position[0])+1)*80 ,(9-int(position[1]))*80 )
+
 
 
 class Window():
@@ -16,7 +18,6 @@ class Window():
         self.window.title('Golden duel Chess')
         self.window.iconbitmap(r"media\icon.ico")
         self.canvas = Canvas(self.window, width = 800, height = 800, bg = 'brown')
-        self.canvas.grid()
         self.background = ImageTk.PhotoImage(file = r"media\board_resized2.png")
         self.background_seen = self.canvas.create_image(0,0,image = self.background ,anchor = NW)
 

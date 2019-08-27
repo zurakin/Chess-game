@@ -16,15 +16,24 @@ class Game:
         self.right = None
         self.turn = 'white'
         self.turn_switch = {'white':'black','black':'white'}
+        self.kings = []
 
+    def check_endangered_kings(self):
+        for king in self.kings:
+            king.endangered = False
+            for piece in self.board.values():
+                if piece !=None and king.position.position in piece.possible_attacks():
+                    king.endangered = True
+                    break
 
     def play(self,window):
         try:
             assert self.board[self.left].team == self.turn
             assert self.right[0] in alpha[:-1] and int(self.right[1]) in range(1,9)
             r = self.board[self.left].move(self.right)
-            window.update()
             assert r == True
             self.turn = self.turn_switch[self.turn]
+            self.check_endangered_kings()
+            window.update()
         except:
             print('impossible move')

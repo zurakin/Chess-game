@@ -26,7 +26,7 @@ class Window():
             if piece.status =='Dead':
                 self.canvas.delete(piece.seen_image)
             else:
-                piece.image = ImageTk.PhotoImage(file = piece.image_path)
+                piece.image = ImageTk.PhotoImage(file = piece.get_image_path())
                 piece.seen_image = self.canvas.create_image(
                 convert(piece.position.position)[0],
                 convert(piece.position.position)[1],

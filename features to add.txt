@@ -1,0 +1,6 @@
+features to add:
+	define another loose condition
+	show possible moves of a piece
+	color the king red if attacked
+	
+	

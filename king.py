@@ -4,6 +4,8 @@ class King(piece.Piece):
     def __init__(self,position,team,game):
         self.type = 'king'
         piece.Piece.__init__(self,position = position,team = team,game = game)
+        self.endangered = False
+        game.kings.append(self)
 
     def possible_moves(self):
         temp_func = [

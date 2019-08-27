@@ -7,8 +7,9 @@ import rook
 import king
 import gui
 
-
-game=game.Game()
+alpha = ['H','G','F','E','D','C','B','A','X']
+alpha2 = ['A','B','C','D','E','F','G','H']
+game = game.Game()
 
 
 #team white
@@ -60,7 +61,27 @@ Bking=king.King("D8","black",game)
 
 Bqueen=queen.Queen("E8","black",game)
 
+
+
+def lgetxy(event):
+    try:
+        game.left = alpha2[int(event.x/80)-1]+str(9-int(event.y/80))
+    except:
+        print('error')
+
+def rgetxy(event):
+    try:
+        game.right = alpha2[int(event.x/80)-1]+str(9-int(event.y/80))
+    except:
+        print('error')
+    game.play(guiw)
+
+
+
 guiw = gui.Window(game)
-# guiw.update()
-game.play(window = guiw)
+guiw.canvas.bind('<Button-1>', lgetxy)
+guiw.canvas.bind('<Button-3>', rgetxy)
+guiw.canvas.grid()
+guiw.update()
+# game.play(window = guiw)
 guiw.window.mainloop()

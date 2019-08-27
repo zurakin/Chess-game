@@ -34,6 +34,7 @@ class Piece:
             self.column=position[0]
             self.position=position_class.Position(position,self.game)
             self.game.board[position]=self
+            return True
 
         elif position in self.possible_moves():
             self.game.board[self.position.position]=None
@@ -42,6 +43,7 @@ class Piece:
             self.column=position[0]
             self.position=position_class.Position(position,self.game)
             self.game.board[position]=self
+            return True
 
         else :
-            return 'impossible move'
+            return False

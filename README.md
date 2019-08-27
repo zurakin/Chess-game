@@ -5,3 +5,6 @@
  and the position you want to go to
  example: 'C2 C4'
  you win if you kill the other team's king
+
+
+to stop the game enter '00 00'

@@ -1,5 +1,9 @@
 import time
-alpha=['H','G','F','E','D','C','B','A','X']
+
+alpha = ['H','G','F','E','D','C','B','A','X']
+
+
+
 class Game:
     def __init__(self):
         self.board={}
@@ -8,54 +12,63 @@ class Game:
                 self.board[j+str(i)]=None
         self.winner = None
         self.pieces = []
+        self.left = None
+        self.right = None
+        self.turn = 'white'
+        self.turn_switch = {'white':'black','black':'white'}
 
-    def draw(self):
-        rlis= list(range(1,9))
-        rlis.reverse()
-        clis = ['A','B','C','D','E','F','G','H']
-        for row in rlis:
-            print(''.join(
-            ["{}:{}".format(column+str(row),
-            self.board[column+str(row)].__repr__()
-            + (16-len(self.board[column+str(row)].__repr__()))*' ')
-            for column in clis]))
-            print('')
 
     def play(self,window):
-        while True:
+        try:
+            assert self.board[self.left].team == self.turn
+            assert self.right[0] in alpha[:-1] and int(self.right[1]) in range(1,9)
+            r = self.board[self.left].move(self.right)
             window.update()
-            if self.winner != None:
-                break
-            ##white plays
-            while True:
-                try:
-                    a = input("white's turn : ").upper().split(' ')
-                    if self.board[a[0]] == None or self.board[a[0]].team != 'white':
-                        print('you can only move white pieces!')
-                        continue
-                    r = self.board[a[0]].move(a[1])
-                    if r == None:
-                        break
-                    print(r)
-                except:
-                    print('error try again')
+            assert r == True
+            self.turn = self.turn_switch[self.turn]
+        except:
+            print('impossible move')
 
-            window.update()
-            if self.winner != None:
-                break
+        # while True:
+        #     window.update()
+        #     if self.winner != None:
+        #         break
+        #     ##white plays
+        #     while True:
+        #         from gui import left,right
+        #         while left == None or right == None:
+        #             print('sleeping')
+        #             input()
+        #         a = [left,right]
+        #         left = None
+        #         right = None
+        #         if self.board[a[0]] == None or self.board[a[0]].team != 'white':
+        #             print('you can only move white pieces!')
+        #             continue
+        #         r = self.board[a[0]].move(a[1])
+        #         if r == None:
+        #             break
+        #         print(r)
+        #
+        #     window.update()
+        #     if self.winner != None:
+        #         break
+        #
+        #     ##black plays
+        #     while True:
+        #         from gui import left,right
+        #         while left == None or right == None:
+        #             input()
+        #         a = [left,right]
+        #         left = None
+        #         right = None
+        #         if self.board[a[0]] == None or self.board[a[0]].team != 'black':
+        #             print('you can only move black pieces!')
+        #             continue
+        #         r = self.board[a[0]].move(a[1])
+        #         if r == None:
+        #             break
+        #         print(r)
 
-            ##black plays
-            while True:
-                try:
-                    a = input("Black's turn : ").upper().split(' ')
-                    if self.board[a[0]] == None or self.board[a[0]].team != 'black':
-                        print('you can only move black pieces!')
-                        continue
-                    r = self.board[a[0]].move(a[1])
-                    if r == None:
-                        break
-                    print(r)
-                except:
-                    print('error try again')
-        print("the winner is {}".format(self.winner))
-        time.sleep(5)
+        # print("the winner is {}".format(self.winner))
+        # time.sleep(5)

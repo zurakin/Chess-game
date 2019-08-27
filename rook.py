@@ -57,16 +57,18 @@ class Rook(piece.Piece):
 
     def possible_attacks(self):
         L=[]
-        temp=self.position
+        temp = self.position
         while True:
             try:
                 temp=temp._get_right()
                 if temp._get_piece()==None:
                     continue
                 elif temp._get_piece().team==self.team:
+                    temp = self.position
                     break
                 else:
                     L+=[temp]
+                    temp = self.position
                     break
             except AssertionError :
                 temp=self.position
@@ -77,9 +79,11 @@ class Rook(piece.Piece):
                 if temp._get_piece()==None:
                     continue
                 elif temp._get_piece().team==self.team:
+                    temp = self.position
                     break
                 else:
                     L+=[temp]
+                    temp = self.position
                     break
             except AssertionError :
                 temp=self.position
@@ -90,9 +94,11 @@ class Rook(piece.Piece):
                 if temp._get_piece()==None:
                     continue
                 elif temp._get_piece().team==self.team:
+                    temp = self.position
                     break
                 else:
                     L+=[temp]
+                    temp = self.position
                     break
             except AssertionError :
                 temp=self.position
@@ -103,9 +109,11 @@ class Rook(piece.Piece):
                 if temp._get_piece()==None:
                     continue
                 elif temp._get_piece().team==self.team:
+                    temp = self.position
                     break
                 else:
                     L+=[temp]
+                    temp = self.position
                     break
             except AssertionError :
                 temp=self.position

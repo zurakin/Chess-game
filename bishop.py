@@ -62,9 +62,11 @@ class Bishop(piece.Piece):
                 if temp._get_piece()==None:
                     continue
                 elif temp._get_piece().team==self.team:
+                    temp = self.position
                     break
                 else:
                     L+=[temp]
+                    temp = self.position
                     break
             except AssertionError :
                 temp=self.position
@@ -75,9 +77,11 @@ class Bishop(piece.Piece):
                 if temp._get_piece()==None:
                     continue
                 elif temp._get_piece().team==self.team:
+                    temp = self.position
                     break
                 else:
                     L+=[temp]
+                    temp = self.position
                     break
             except AssertionError :
                 temp=self.position
@@ -88,9 +92,11 @@ class Bishop(piece.Piece):
                 if temp._get_piece()==None:
                     continue
                 elif temp._get_piece().team==self.team:
+                    temp = self.position
                     break
                 else:
                     L+=[temp]
+                    temp = self.position
                     break
             except AssertionError :
                 temp=self.position
@@ -101,9 +107,11 @@ class Bishop(piece.Piece):
                 if temp._get_piece()==None:
                     continue
                 elif temp._get_piece().team==self.team:
+                    temp = self.position
                     break
                 else:
                     L+=[temp]
+                    temp = self.position
                     break
             except AssertionError :
                 temp=self.position

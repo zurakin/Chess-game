@@ -75,6 +75,9 @@ def rgetxy(event):
     except:
         print('error')
     game.play(guiw)
+    if game.winner != None:
+        print('the winner is {}'.format(game.winner))
+        input()
 
 
 

@@ -39,8 +39,8 @@ class Piece:
             self.position=position_class.Position(position,self.game)
             self.game.board[position]=self
             if self.type == 'pawn' and position[1] == '1' or position[1] == '8':
-                return self.team
-            return True
+                return True
+            return False
 
         elif position in self.possible_moves():
             self.game.board[self.position.position]=None
@@ -49,7 +49,7 @@ class Piece:
             self.column=position[0]
             self.position=position_class.Position(position,self.game)
             self.game.board[position]=self
-            return True
+            return False
 
         else :
-            return False
+            return None

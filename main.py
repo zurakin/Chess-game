@@ -14,7 +14,7 @@ game = game.Game()
 
 
 #team white
-Wpawn1=pawn.Pawn('H2','white',game)
+Wpawn1=pawn.Pawn('H2','black',game)
 Wpawn2=pawn.Pawn('G2','white',game)
 Wpawn3=pawn.Pawn('F2','white',game)
 Wpawn4=pawn.Pawn('E2','white',game)
@@ -40,7 +40,7 @@ Wqueen=queen.Queen("E1","white",game)
 
 
 #team black
-Bpawn1=pawn.Pawn('H7','black',game)
+Bpawn1=pawn.Pawn('H7','white',game)
 Bpawn2=pawn.Pawn('G7','black',game)
 Bpawn3=pawn.Pawn('F7','black',game)
 Bpawn4=pawn.Pawn('E7','black',game)

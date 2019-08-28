@@ -28,13 +28,16 @@ class Game:
                     break
 
     def play(self,window):
-        try:
-            assert self.board[self.left].team == self.turn
-            assert self.right[0] in alpha[:-1] and int(self.right[1]) in range(1,9)
-            r = self.board[self.left].move(self.right)
-            assert r == True
-            self.turn = self.turn_switch[self.turn]
-            self.check_endangered_kings()
-            window.update()
-        except:
-            print('impossible move')
+        # try:
+        assert self.board[self.left].team == self.turn
+        assert self.right[0] in alpha[:-1] and int(self.right[1]) in range(1,9)
+        r = self.board[self.left].move(self.right)
+        assert r != False
+        self.turn = self.turn_switch[self.turn]
+        self.check_endangered_kings()
+        if r != True:
+            pawn = self.board[self.right]
+            pawn.promote(input('what do you want to promote your piece to : '),self)
+        window.update()
+        # except:
+        #     print('impossible move')

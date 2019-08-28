@@ -1,9 +1,25 @@
 import piece
+import bishop
+import rook
+import knight
+import queen
+
+promotion = {'rook':rook.Rook,'bishop':bishop.Bishop,'knight':knight.Knight,
+'queen':queen.Queen}
 
 class Pawn(piece.Piece):
     def __init__(self,position,team,game):
         self.type = 'pawn'
         piece.Piece.__init__(self,position = position,team = team,game = game)
+
+    def promote(self,type,game):
+        self.status = 'Dead'
+        game.board[self.position.position] = promotion[type](
+        position = self.position.position,
+        team = self.team,
+        game = game
+        )
+
     def possible_moves(self):
         L=[]
         if self.team=="black":

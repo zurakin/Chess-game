@@ -10,7 +10,7 @@ class Piece:
         self.position=position_class.Position(position,game)
         self.line=int(position[1])
         self.column=position[0]
-        ##the initialize attribute is added so that when the rook class is called inside the queen class, it does't overwrite it in the board
+        ## the initialize attribute is added so that when the rook class is called inside the queen class, it does't overwrite it in the board
         if initialize:
             game.board[position] = self
             game.pieces.append(self)
@@ -38,6 +38,8 @@ class Piece:
             self.column=position[0]
             self.position=position_class.Position(position,self.game)
             self.game.board[position]=self
+            if self.type == 'pawn' and position[1] == '1' or position[1] == '8':
+                return self.team
             return True
 
         elif position in self.possible_moves():

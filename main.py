@@ -6,6 +6,7 @@ import queen
 import rook
 import king
 import gui
+from tkinter import NW
 
 alpha = ['H','G','F','E','D','C','B','A','X']
 alpha2 = ['A','B','C','D','E','F','G','H']
@@ -65,9 +66,21 @@ Bqueen=queen.Queen("E8","black",game)
 
 def lgetxy(event):
     try:
+        for i in guiw.selec_poss_seen:
+            guiw.canvas.delete(i)
         game.left = alpha2[int(event.x/80)-1]+str(9-int(event.y/80))
+        assert game.board[game.left].team == game.turn
+        game.selec_poss = game.board[game.left].possible_moves()+game.board[game.left].possible_attacks()
+        guiw.selec_poss_seen = [
+        guiw.canvas.create_image(
+        gui.convert(i)[0],
+        gui.convert(i)[1],
+        image = guiw.selec_poss_im,
+        anchor = NW )
+        for i in game.selec_poss
+        ]
     except:
-        print('error')
+        print('invalid selection')
 
 def rgetxy(event):
     try:
@@ -75,6 +88,8 @@ def rgetxy(event):
     except:
         print('error')
     game.play(guiw)
+    for i in guiw.selec_poss_seen:
+        guiw.canvas.delete(i)
     if game.winner != None:
         print('the winner is {}'.format(game.winner))
         input()

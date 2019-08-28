@@ -17,6 +17,7 @@ class Game:
         self.turn = 'white'
         self.turn_switch = {'white':'black','black':'white'}
         self.kings = []
+        self.selec_poss = [] #this list contains the possible moves of the selected piece
 
     def check_endangered_kings(self):
         for king in self.kings:

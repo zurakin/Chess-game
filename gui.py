@@ -18,8 +18,12 @@ class Window():
         self.window.title('Golden duel Chess')
         self.window.iconbitmap(r"media\icon.ico")
         self.canvas = Canvas(self.window, width = 800, height = 800, bg = 'brown')
+        ##draw the background
         self.background = ImageTk.PhotoImage(file = r"media\board_resized2.png")
         self.background_seen = self.canvas.create_image(0,0,image = self.background ,anchor = NW)
+        ##add an image for the selec_poss
+        self.selec_poss_im = ImageTk.PhotoImage(file = r"media\selec_poss.png")
+        self.selec_poss_seen = []
 
     def update(self):
         for piece in self.game.pieces:

@@ -1,4 +1,6 @@
 import time
+import random
+import winsound
 
 alpha = ['H','G','F','E','D','C','B','A','X']
 
@@ -6,10 +8,10 @@ alpha = ['H','G','F','E','D','C','B','A','X']
 
 class Game:
     def __init__(self):
-        self.board={}
+        self.board = {}
         for i in range(1,9):
             for j in alpha[:8]:
-                self.board[j+str(i)]=None
+                self.board[j+str(i)] = None
         self.winner = None
         self.pieces = []
         self.left = None
@@ -23,17 +25,19 @@ class Game:
         for king in self.kings:
             king.endangered = False
             for piece in self.board.values():
-                if piece !=None and king.position.position in piece.possible_attacks():
+                if piece  != None and king.position.position in piece.possible_attacks():
                     king.endangered = True
                     break
 
     def play(self,window):
         try:
-            assert self.board[self.left].team == self.turn
+            assert self.board[self.left].team  ==  self.turn
             assert self.right[0] in alpha[:-1] and int(self.right[1]) in range(1,9)
             r = self.board[self.left].move(self.right)
-            assert r != None
+            assert r  !=  None
+            winsound.PlaySound(r'audio\{}.wav'.format(str(random.randint(1,9))),winsound.SND_ASYNC)
             self.turn = self.turn_switch[self.turn]
+            window.update()
             self.check_endangered_kings()
             if r :
                 self.board[self.right].promote(input('what do you want to promote your piece to : '),self)

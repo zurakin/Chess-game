@@ -27,7 +27,7 @@ class Window():
 
     def update(self):
         for piece in self.game.pieces:
-            if piece.status =='Dead':
+            if piece.status  == 'Dead':
                 self.canvas.delete(piece.seen_image)
             else:
                 piece.image = ImageTk.PhotoImage(file = piece.get_image_path())

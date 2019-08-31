@@ -1,13 +1,13 @@
-alpha=['H','G','F','E','D','C','B','A','X']
+alpha = ['H','G','F','E','D','C','B','A','X']
 
 class Position:
     def __init__(self,position,game):
         self.game = game
-        self.position=position
-        self.line=int(position[1])
-        self.column=position[0]
+        self.position = position
+        self.line = int(position[1])
+        self.column = position[0]
         assert self.line in range(1,9) and self.column in alpha
-        assert self.column!='X'
+        assert self.column != 'X'
 
     def _get_piece(self):
         return self.game.board[self.position]

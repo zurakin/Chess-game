@@ -6,6 +6,7 @@ import queen
 import rook
 import king
 import gui
+import winsound
 from tkinter import NW
 
 alpha = ['H','G','F','E','D','C','B','A','X']
@@ -65,7 +66,6 @@ Bqueen = queen.Queen("E8","black",game)
 
 def undo(event):
     game.undo(guiw)
-    game.turn = game.turn_switch[game.turn]
 
 
 def lgetxy(event):
@@ -95,6 +95,7 @@ def rgetxy(event):
     for i in guiw.selec_poss_seen:
         guiw.canvas.delete(i)
     if game.winner  !=  None:
+        winsound.PlaySound(r'audio/gameover.wav',winsound.SND_ASYNC)
         print('the winner is {}'.format(game.winner))
         input()
 
@@ -106,5 +107,4 @@ guiw.canvas.bind('<Button-2>', undo)
 guiw.canvas.bind('<Button-3>', rgetxy)
 guiw.canvas.grid()
 guiw.update()
-# game.play(window = guiw)
 guiw.window.mainloop()

@@ -45,9 +45,16 @@ class Game:
             r = self.board[self.left].move(self.right)
             assert r  !=  None
             winsound.PlaySound(r'audio\{}.wav'.format(str(random.randint(1,9))),winsound.SND_ASYNC)
-            self.turn = self.turn_switch[self.turn]
+            turn = self.turn
+            self.turn = self.turn_switch[turn]
             window.update()
             self.check_endangered_kings()
+            for king in self.kings:
+                if king.team == turn and king.endangered:
+                    winsound.PlaySound(r'audio/danger.wav',winsound.SND_ASYNC)
+                    self.undo(window)
+                    print('illegal move')
+                    r = False
             if r :
                 self.board[self.right].promote(input('what do you want to promote your piece to : '),self)
             window.update()
@@ -60,6 +67,7 @@ class Game:
             self.board[self.last_move[1]].has_moved = self.last_move[0]
             self.board[self.last_move[2]] = None
             self.board[self.last_move[1]].position = position_class.Position(self.last_move[1],self)
+            self.turn = self.turn_switch[self.turn]
         elif len(self.last_move) == 6:
             self.board[self.last_move[1]] = self.board[self.last_move[2]]
             self.board[self.last_move[1]].has_moved = self.last_move[0]
@@ -69,4 +77,5 @@ class Game:
             game = self)
             self.board[self.last_move[2]].has_moved = self.last_move[5]
             self.board[self.last_move[1]].position = position_class.Position(self.last_move[1],self)
+            self.turn = self.turn_switch[self.turn]
         window.update()

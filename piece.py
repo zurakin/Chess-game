@@ -20,9 +20,9 @@ class Piece:
 
     def get_image_path(self):
         if self.type  !=  'king' or (not self.endangered):
-            return r"media\{}.png".format(self.team.title()+self.type.title())
+            return "media/{}.png".format(self.team.title()+self.type.title())
         else :
-            return r"media\{}Endangered.png".format(self.team.title()+self.type.title())
+            return "media/{}Endangered.png".format(self.team.title()+self.type.title())
 
     def move(self,position):
         if position in self.possible_attacks():

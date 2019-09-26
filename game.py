@@ -48,11 +48,13 @@ class Game:
             pygame.mixer.music.load("audio/{}.wav".format(str(random.randint(1,9))))
             pygame.mixer.music.play()
             self.turn = self.turn_switch[self.turn]
-            window.update()
             self.check_endangered_kings()
+            window.update()
             for king in self.kings:
-                if king.team == turn and king.endangered:
-                    winsound.PlaySound(r'audio/danger.wav',winsound.SND_ASYNC)
+                if king.team != self.turn and king.endangered:
+                    pygame.mixer.init()
+                    pygame.mixer.music.load("audio/danger.wav")
+                    pygame.mixer.music.play()
                     self.undo(window)
                     print('illegal move')
                     r = False

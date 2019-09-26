@@ -6,7 +6,6 @@ import queen
 import rook
 import king
 import gui
-import winsound
 from tkinter import NW
 
 alpha = ['H','G','F','E','D','C','B','A','X']

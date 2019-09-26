@@ -26,6 +26,12 @@ class Piece:
 
     def move(self,position):
         if position in self.possible_attacks():
+            self.game.last_move = [self.has_moved,
+            self.position.position ,
+            position ,
+            self.game.board[position].type,
+            self.game.board[position].team,
+            self.game.board[position].has_moved]
             if self.game.board[position].type  ==  'king':
                 self.game.winner = self.team
             self.game.board[self.position.position] = None
@@ -43,6 +49,9 @@ class Piece:
             return False
 
         elif position in self.possible_moves():
+            self.game.last_move = [self.has_moved,
+            self.position.position ,
+            position ]
             self.game.board[self.position.position] = None
             self.has_moved = True
             self.line = position[1]

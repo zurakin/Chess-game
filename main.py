@@ -6,6 +6,7 @@ import queen
 import rook
 import king
 import gui
+import winsound
 from tkinter import NW
 
 alpha = ['H','G','F','E','D','C','B','A','X']
@@ -63,6 +64,9 @@ Bking = king.King("D8","black",game)
 Bqueen = queen.Queen("E8","black",game)
 
 
+def undo(event):
+    game.undo(guiw)
+
 
 def lgetxy(event):
     try:
@@ -98,8 +102,8 @@ def rgetxy(event):
 
 guiw = gui.Window(game)
 guiw.canvas.bind('<Button-1>', lgetxy)
+guiw.canvas.bind('<Button-2>', undo)
 guiw.canvas.bind('<Button-3>', rgetxy)
 guiw.canvas.grid()
 guiw.update()
-# game.play(window = guiw)
 guiw.window.mainloop()

@@ -1,9 +1,17 @@
 import time
 import random
 import pygame
+import bishop
+import rook
+import knight
+import queen
+import pawn
+import king
+import position_class
 
 alpha = ['H','G','F','E','D','C','B','A','X']
-
+refer = {'rook':rook.Rook,'bishop':bishop.Bishop,'knight':knight.Knight,
+'queen':queen.Queen, 'pawn':pawn.Pawn ,'king':king.King }
 
 
 class Game:
@@ -20,6 +28,7 @@ class Game:
         self.turn_switch = {'white':'black','black':'white'}
         self.kings = []
         self.selec_poss = [] #this list contains the possible moves of the selected piece
+        self.last_move = [] #this list contains the last made move informations so it can be undone
 
     def check_endangered_kings(self):
         for king in self.kings:
@@ -41,8 +50,33 @@ class Game:
             self.turn = self.turn_switch[self.turn]
             window.update()
             self.check_endangered_kings()
+            for king in self.kings:
+                if king.team == turn and king.endangered:
+                    winsound.PlaySound(r'audio/danger.wav',winsound.SND_ASYNC)
+                    self.undo(window)
+                    print('illegal move')
+                    r = False
             if r :
                 self.board[self.right].promote(input('what do you want to promote your piece to : '),self)
             window.update()
         except:
             print('impossible move')
+
+    def undo(self,window):
+        if len(self.last_move) == 3:
+            self.board[self.last_move[1]] = self.board[self.last_move[2]]
+            self.board[self.last_move[1]].has_moved = self.last_move[0]
+            self.board[self.last_move[2]] = None
+            self.board[self.last_move[1]].position = position_class.Position(self.last_move[1],self)
+            self.turn = self.turn_switch[self.turn]
+        elif len(self.last_move) == 6:
+            self.board[self.last_move[1]] = self.board[self.last_move[2]]
+            self.board[self.last_move[1]].has_moved = self.last_move[0]
+            self.board[self.last_move[2]] = refer[self.last_move[3]](
+            position = self.last_move[2],
+            team = self.last_move[4],
+            game = self)
+            self.board[self.last_move[2]].has_moved = self.last_move[5]
+            self.board[self.last_move[1]].position = position_class.Position(self.last_move[1],self)
+            self.turn = self.turn_switch[self.turn]
+        window.update()

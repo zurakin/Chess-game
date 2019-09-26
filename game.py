@@ -1,6 +1,6 @@
 import time
 import random
-import winsound
+import pygame
 import bishop
 import rook
 import knight
@@ -44,9 +44,10 @@ class Game:
             assert self.right[0] in alpha[:-1] and int(self.right[1]) in range(1,9)
             r = self.board[self.left].move(self.right)
             assert r  !=  None
-            winsound.PlaySound(r'audio\{}.wav'.format(str(random.randint(1,9))),winsound.SND_ASYNC)
-            turn = self.turn
-            self.turn = self.turn_switch[turn]
+            pygame.mixer.init()
+            pygame.mixer.music.load("audio/{}.wav".format(str(random.randint(1,9))))
+            pygame.mixer.music.play()
+            self.turn = self.turn_switch[self.turn]
             window.update()
             self.check_endangered_kings()
             for king in self.kings:

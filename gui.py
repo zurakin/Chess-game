@@ -1,5 +1,5 @@
 from tkinter import *
-from PIL import ImageTk
+from PIL import ImageTk, Image
 
 
 
@@ -16,13 +16,15 @@ class Window():
         self.game = game
         self.window = Tk()
         self.window.title('Golden duel Chess')
-        self.window.iconbitmap(r"media\icon.ico")
+        # self.window.iconbitmap(r"media\icon.ico")
         self.canvas = Canvas(self.window, width = 800, height = 800, bg = 'brown')
         ##draw the background
-        self.background = ImageTk.PhotoImage(file = r"media\board_resized2.png")
+        self.loadbackground = Image.open("media/board_resized2.png")
+        self.background = ImageTk.PhotoImage(image = self.loadbackground)
         self.background_seen = self.canvas.create_image(0,0,image = self.background ,anchor = NW)
         ##add an image for the selec_poss
-        self.selec_poss_im = ImageTk.PhotoImage(file = r"media\selec_poss.png")
+        self.loadselec = Image.open("media/selec_poss.png")
+        self.selec_poss_im = ImageTk.PhotoImage(image = self.loadselec)
         self.selec_poss_seen = []
 
     def update(self):
@@ -30,7 +32,8 @@ class Window():
             if piece.status  == 'Dead':
                 self.canvas.delete(piece.seen_image)
             else:
-                piece.image = ImageTk.PhotoImage(file = piece.get_image_path())
+                piece.loadimage = Image.open(piece.get_image_path())
+                piece.image = ImageTk.PhotoImage(image = piece.loadimage)
                 piece.seen_image = self.canvas.create_image(
                 convert(piece.position.position)[0],
                 convert(piece.position.position)[1],

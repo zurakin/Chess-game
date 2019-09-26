@@ -95,7 +95,6 @@ def rgetxy(event):
     for i in guiw.selec_poss_seen:
         guiw.canvas.delete(i)
     if game.winner  !=  None:
-        winsound.PlaySound(r'audio/gameover.wav',winsound.SND_ASYNC)
         print('the winner is {}'.format(game.winner))
         input()
 
